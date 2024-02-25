@@ -1,28 +1,15 @@
-// import './style.css';
-
 const onClickAdd = () => {
-
   // 入力値の取得
   const inputText = document.getElementById("add-text").value;
-  // フォーム初期化
   document.getElementById("add-text").value = "";
 
   createIncompleteTodo(inputText);
-
 };
 
-
+// 未完了リストへの追加
 const createIncompleteTodo = (inputText) => {
 
-  // li生成
-  const li = document.createElement("li");
-  // div生成
-  const div = document.createElement("div");
-  div.className = "list-row";
-  // 入力値をpで生成
-  const p = document.createElement("p");
-  p.className = "todo-item";
-  p.innerText = inputText;
+  const {li, div, p} = createTags(inputText);
 
   // 完了ボタンの生成
   const completeButton = document.createElement("button");
@@ -83,6 +70,20 @@ const createIncompleteTodo = (inputText) => {
   document.getElementById("incomplete-list").appendChild(li);
 
 
+};
+
+// タグの生成
+const createTags = (inputText) => {
+  const li = document.createElement("li");
+
+  const div = document.createElement("div");
+  div.className = "list-row";
+  
+  const p = document.createElement("p");
+  p.className = "todo-item";
+  p.innerText = inputText;
+
+  return {li, div, p};
 };
 
 document.getElementById("add-button").addEventListener("click", onClickAdd);
