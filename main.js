@@ -41,17 +41,15 @@ const createIncompleteTodo = (inputText) => {
     // 完了えりあに移動
     document.getElementById("complete-list").appendChild(moveTarget);
 
-  }
-  )
-  const deleteButton = createDeleteButton();
+  })
 
-  // 子要素の設定(追加)
+  // 子要素の追加
   div.appendChild(p);
   div.appendChild(completeButton);
-  div.appendChild(deleteButton);
+  div.appendChild(createDeleteButton());
   li.appendChild(div);
 
-  // 入力値の要素の追加
+  // TODOの追加
   document.getElementById("incomplete-list").appendChild(li);
 };
 
@@ -79,7 +77,7 @@ const createDeleteButton = () => {
       const deleteTarget = deleteButton.closest("li");
       document.getElementById("incomplete-list").removeChild(deleteTarget);
     });
-    
+
     return deleteButton;
 };
 
