@@ -7,6 +7,13 @@ const onClickAdd = () => {
   // フォーム初期化
   document.getElementById("add-text").value = "";
 
+  createIncompleteTodo(inputText);
+
+};
+
+
+const createIncompleteTodo = (inputText) => {
+
   // li生成
   const li = document.createElement("li");
   // div生成
@@ -23,13 +30,24 @@ const onClickAdd = () => {
   completeButton.addEventListener("click", () => {
    
     const moveTarget =  completeButton.closest("li");;
-    // 次の要素の取得して、削除
+    // 次の(下の)要素の取得して、削除
     completeButton.nextElementSibling.remove();
     completeButton.remove();
 
     // 戻すボタンの生成
     const returnButton = document.createElement("button");
     returnButton.innerText = "戻る";
+
+    returnButton.addEventListener("click", () => {
+      
+      
+      const inputTextForReturn = returnButton.previousElementSibling.innerText;      
+      createIncompleteTodo(inputTextForReturn);
+
+      returnButton.closest("li").remove();
+
+    })
+    
 
     // li配下を取得(div)
     moveTarget.firstElementChild.appendChild(returnButton);
@@ -59,14 +77,12 @@ const onClickAdd = () => {
   li.appendChild(div);
 
 
+
+
   // 入力値の要素の追加
   document.getElementById("incomplete-list").appendChild(li);
 
-  
-  
 
-
-  // alert(inputText);
 };
 
 document.getElementById("add-button").addEventListener("click", onClickAdd);
