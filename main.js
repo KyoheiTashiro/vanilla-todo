@@ -43,36 +43,17 @@ const createIncompleteTodo = (inputText) => {
   }
   )
 
-
-  // 削除ボタンの生成
-  const deleteButton = document.createElement("button");
-  deleteButton.innerText = "削除";
-  // 削除ボタン押下時の動作
-  deleteButton.addEventListener("click", () => {
-
-    // 対象のdomの親要素で、指定された一番近いタグを取得
-    const deleteTarget = deleteButton.closest("li");
-    // 要素を削除
-    document.getElementById("incomplete-list").removeChild(deleteTarget);
-  });
-
-
   // 子要素の設定(追加)
   div.appendChild(p);
   div.appendChild(completeButton);
   div.appendChild(deleteButton);
   li.appendChild(div);
 
-
-
-
   // 入力値の要素の追加
   document.getElementById("incomplete-list").appendChild(li);
-
-
 };
 
-// タグの生成
+// TODOの要素の生成
 const createTags = (inputText) => {
   const li = document.createElement("li");
 
@@ -84,6 +65,18 @@ const createTags = (inputText) => {
   p.innerText = inputText;
 
   return {li, div, p};
+};
+
+// 削除ボタンの生成
+const createDeleteButton = () => {
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "削除";
+    
+    deleteButton.addEventListener("click", () => {
+      // 削除したい要素を取得
+      const deleteTarget = deleteButton.closest("li");
+      document.getElementById("incomplete-list").removeChild(deleteTarget);
+    });
 };
 
 document.getElementById("add-button").addEventListener("click", onClickAdd);
