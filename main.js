@@ -40,8 +40,10 @@ const createIncompleteTodo = (inputText) => {
     moveTarget.firstElementChild.appendChild(returnButton);
     // 完了えりあに移動
     document.getElementById("complete-list").appendChild(moveTarget);
+
   }
   )
+  const deleteButton = createDeleteButton();
 
   // 子要素の設定(追加)
   div.appendChild(p);
@@ -77,6 +79,8 @@ const createDeleteButton = () => {
       const deleteTarget = deleteButton.closest("li");
       document.getElementById("incomplete-list").removeChild(deleteTarget);
     });
+    
+    return deleteButton;
 };
 
 document.getElementById("add-button").addEventListener("click", onClickAdd);
